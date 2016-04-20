@@ -2,7 +2,7 @@ from flask import Flask, request
 import telepot
 from pprint import pprint
 
-PORT = 8443
+PORT = 443
 HOST = "telbotrls.herokuapp.com"
 TOKEN = "194721710:AAFQcKrb9w7sDxqGlEtb66L_2C8DQw7KcP4"
 
