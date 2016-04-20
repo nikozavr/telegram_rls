@@ -12,10 +12,7 @@ except ImportError:
 def handle(msg):
     pprint(msg)
 
-bot = telepot.Bot(TOKEN)
-update_queue = Queue()
 
-bot.message_loop(handle, source=update_queue)
 
 @app.route('/')
 def index():
