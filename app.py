@@ -72,11 +72,10 @@ def parse_resp(response, msg):
     else:
         bot.sendMessage(msg['chat']['id'], 'Ошибка поиска. Проверьте название препарата')
 
-    
+
 
 def handle(msg):
-    print(msg)
-    pprint.pprint(msg)
+    pprint(msg)
     global gettingnum
     if not gettingnum:
         if len(msg['text']) > 2:
