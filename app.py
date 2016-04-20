@@ -25,8 +25,8 @@ except ImportError:
 
 def parse_resp(response, msg):
     global gettingnum
-    if response.getcode() == 200:
-        the_page = response.read().decode('cp1251')
+    if response.status_code == 200:
+        the_page = response.content
         soup = BeautifulSoup(the_page, 'html.parser')
         dv = False
         answer = "*" + msg["text"][3:] + "*" + "\n"
