@@ -4,9 +4,8 @@ from pprint import pprint
 import sys
 import time
 import requests
-import urllib
-import urllib.parse
-import urllib.request
+from urllib.parse import urlencode
+from httplib2 import Http
 
 PORT = 443
 HOST = "telbotrls.herokuapp.com"
@@ -23,10 +22,10 @@ try:
 except ImportError:
     from queue import Queue
 
-def parse_resp(response, msg):
+def parse_resp(resp, content, msg):
     global gettingnum
-    if response.status_code == 200:
-        the_page = response.content
+    if resp.status == 200:
+        the_page = content.decode("utf-8")
         print(the_page)
         soup = BeautifulSoup(the_page, 'html.parser')
         dv = False
@@ -86,19 +85,13 @@ def handle(msg):
             if msg['text'][:2] == "/s":
                 values = {'word' : msg["text"][3:],
                             'encoding' : "utf-8"}
-                url = "http://www.rlsnet.ru/search.htm?encoding=utf-8&word=" + msg["text"][3:]
- # data should be bytes
-                string = urllib.parse.unquote(url)
-                print(string.encode('utf-8'))
+                url = "http://www.rlsnet.ru/search.htm"
                 data = urllib.parse.urlencode(values)
-                print(data)
-                print(data.encode('utf-8'))
-                print(data.encode('cp1251'))
-                print(url)
-                r = requests.get(url)
-                print(r.url)
-                print(r.status_code)
-                parse_resp(r, msg)
+                data = data.encode('utf-8')
+
+                h = Http()
+                resp, content = h.request(url, "GET", data)
+                parse_resp(resp, content, msg)
 
             elif msg['text'][:2] == "/h":
                 bot.sendMessage(msg['chat']['id'], 'Бот предназначен для поиска лекарств на сайте http://www.rlsnet.ru/')

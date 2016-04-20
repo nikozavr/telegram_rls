@@ -2,6 +2,7 @@ aiohttp==0.21.5
 chardet==2.3.0
 Flask==0.10.1
 gunicorn==19.4.5
+httplib2==0.9.2
 itsdangerous==0.24
 Jinja2==2.8
 MarkupSafe==0.23
