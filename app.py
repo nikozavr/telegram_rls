@@ -14,6 +14,7 @@ except ImportError:
     from queue import Queue
 
 def handle(msg):
+    global bot
     pprint(msg)
     bot.sendMessage(msg['chat']['id'], 'Ошибка ввода')
 
