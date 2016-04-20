@@ -18,8 +18,7 @@ except ImportError:
 
 def handle(msg):
     pprint(msg)
-    print(msg['chat']['id'])
-    bot.send_message(msg['chat']['id'], 'Ошибка ввода')
+    bot.sendMessage(msg['chat']['id'], 'Ошибка ввода')
 
 bot = telepot.Bot(TOKEN)
 update_queue = Queue()
@@ -31,7 +30,7 @@ def index():
     return "Ok!"
 
 @app.route("/" + TOKEN, methods=['GET', 'POST'])
-def bot():
+def webhook():
     update_queue.put(request.data)  # dump data to queue
     return 'OK'
 
