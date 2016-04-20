@@ -1,6 +1,5 @@
 from flask import Flask, request
 import telepot
-from telepot import Bot
 from pprint import pprint
 import sys
 import time
