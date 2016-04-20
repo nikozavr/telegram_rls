@@ -86,13 +86,14 @@ def handle(msg):
             if msg['text'][:2] == "/s":
                 values = {'word' : msg["text"][3:],
                             'encoding' : "utf-8"}
-                url = "http://www.rlsnet.ru/search.htm"
+                url = "http://www.rlsnet.ru/search.htm?encoding=utf-8&word=" + msg["text"][3:]
  # data should be bytes
                 data = urllib.parse.urlencode(values)
                 print(data)
                 print(data.encode('utf-8'))
                 print(data.encode('cp1251'))
-                r = requests.get(url, params=values)
+                print(url)
+                r = requests.get(url)
                 print(r.url)
                 print(r.status_code)
                 parse_resp(r, msg)
