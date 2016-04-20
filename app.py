@@ -85,7 +85,7 @@ def handle(msg):
         if len(msg['text']) > 2:
             if msg['text'][:2] == "/s":
                 values = {'word' : msg["text"][3:],
-                            'encoding' : "utf-8"}
+                            'encoding' : "windows-1251"}
                 url = "http://www.rlsnet.ru/search.htm"
  # data should be bytes
 
