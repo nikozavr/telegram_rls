@@ -27,6 +27,7 @@ def parse_resp(response, msg):
     global gettingnum
     if response.status_code == 200:
         the_page = response.content
+        print(the_page)
         soup = BeautifulSoup(the_page, 'html.parser')
         dv = False
         answer = "*" + msg["text"][3:] + "*" + "\n"
@@ -88,7 +89,9 @@ def handle(msg):
                 url = "http://www.rlsnet.ru/search.htm"
                 data = urllib.parse.urlencode(values)
                 data = data.encode('utf-8') # data should be bytes
+
                 r = requests.get(url, data)
+                print(r.url)
                 parse_resp(r, msg)
 
             elif msg['text'][:2] == "/h":
