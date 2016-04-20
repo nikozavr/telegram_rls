@@ -15,6 +15,7 @@ def handle(msg):
 bot = telepot.Bot("194721710:AAFQcKrb9w7sDxqGlEtb66L_2C8DQw7KcP4")
 update_queue = Queue()
 bot.message_loop(handle, source=update_queue)
+print('Listening ...')
 
 @app.route('/')
 def index():
@@ -26,4 +27,5 @@ def bot():
     return 'OK'
 
 if __name__ == "__main__":
+    bot.setWebhook("https://telbotrls.herokuapp.com/bot")
     app.run()
