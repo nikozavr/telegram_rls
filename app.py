@@ -4,6 +4,9 @@ from pprint import pprint
 import sys
 import time
 import requests
+import urllib
+import urllib.parse
+import urllib.request
 
 PORT = 443
 HOST = "telbotrls.herokuapp.com"
