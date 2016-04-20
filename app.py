@@ -88,6 +88,8 @@ def handle(msg):
                             'encoding' : "utf-8"}
                 url = "http://www.rlsnet.ru/search.htm?encoding=utf-8&word=" + msg["text"][3:]
  # data should be bytes
+                string = urllib.parse.unquote(url)
+                print(data.decode('utf-8'))
                 data = urllib.parse.urlencode(values)
                 print(data)
                 print(data.encode('utf-8'))
