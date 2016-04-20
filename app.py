@@ -15,6 +15,7 @@ except ImportError:
 
 def handle(msg):
     pprint(msg)
+    bot.sendMessage(msg['chat']['id'], 'Ошибка ввода')
 
 bot = telepot.Bot(TOKEN)
 update_queue = Queue()
