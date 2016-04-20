@@ -88,9 +88,8 @@ def handle(msg):
                 url = "http://www.rlsnet.ru/search.htm"
                 data = urllib.parse.urlencode(values)
                 data = data.encode('utf-8') # data should be bytes
-                req = urllib.request.Request(url, data)
-                response = urllib.request.urlopen(req)
-                parse_resp(response, msg)
+                r = requests.get(url, data)
+                parse_resp(r, msg)
 
             elif msg['text'][:2] == "/h":
                 bot.sendMessage(msg['chat']['id'], 'Бот предназначен для поиска лекарств на сайте http://www.rlsnet.ru/')
