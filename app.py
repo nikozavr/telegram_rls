@@ -89,8 +89,9 @@ def handle(msg):
                 url = "http://www.rlsnet.ru/search.htm"
  # data should be bytes
                 data = urllib.parse.urlencode(values)
-                data = data.encode('utf-8')
                 print(data)
+                print(data.encode('utf-8'))
+                print(data.encode('cp1251'))
                 r = requests.get(url, params=values)
                 print(r.url)
                 print(r.status_code)
