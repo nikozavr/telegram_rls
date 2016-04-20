@@ -89,8 +89,9 @@ def handle(msg):
                 url = "http://www.rlsnet.ru/search.htm"
  # data should be bytes
 
-                r = requests.get(url, values)
+                r = requests.get(url, params=values)
                 print(r.url)
+                print(r.status_code)
                 parse_resp(r, msg)
 
             elif msg['text'][:2] == "/h":
