@@ -46,7 +46,7 @@ def parse_resp(resp, content, msg):
                 for div in soup.find_all("div", { "class" : "search_serp_one" }):
                     count = count + 1
                     links.append(div.find_all('a')[0]['href'])
-                    links_name.append(div.find_all('a')[0]).getText())
+                    links_name.append((div.find_all('a')[0]).getText())
                     answer = answer + "  " + str(count) + " " + (div.find_all('a')[0]).getText() + "\n"
                     if div.next_sibling.name == "p":
                         break
