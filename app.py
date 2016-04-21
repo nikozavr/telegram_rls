@@ -92,6 +92,8 @@ def handle(msg):
 
                 h = Http()
                 resp, content = h.request(url, "GET", data)
+                print(resp.status)
+                print(resp.content)
                 parse_resp(resp, content, msg)
 
             elif msg['text'][:2] == "/h":
