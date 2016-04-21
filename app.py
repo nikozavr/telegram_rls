@@ -87,7 +87,6 @@ def handle(msg):
                 values = {'word' : msg["text"][3:],
                             'encoding' : "utf-8"}
                 url = "http://www.rlsnet.ru/search.htm?encoding=utf-8&word=" + msg["text"][3:]
-                data = urlencode(values)
 
                 h = Http()
                 resp, content = h.request(url)
@@ -109,7 +108,6 @@ def handle(msg):
                 url = links[num]
                 h = Http()
                 resp, content = h.request(url)
-                print(resp.status)
                 parse_resp(resp, content, msg)
                 links=[]
             else:
