@@ -6,11 +6,7 @@ import time
 import requests
 from bs4 import BeautifulSoup
 from httplib2 import Http
-import pycurl
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
+
 # -*- coding: utf-8 -*-
 
 PORT = 443
@@ -108,6 +104,8 @@ def handle(msg):
                 print(url)
                 h = Http()
                 resp, content = h.request(url, "GET")
+                r = requests.get(url)
+                print(r.status_code)
                 print(resp)
                 print(content)
                 parse_resp(resp, content, msg)
