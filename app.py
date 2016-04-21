@@ -7,8 +7,10 @@ import requests
 from bs4 import BeautifulSoup
 from httplib2 import Http
 import pycurl
-from StringIO import StringIO
-
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 # -*- coding: utf-8 -*-
 
 PORT = 443
