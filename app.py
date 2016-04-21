@@ -7,6 +7,8 @@ import requests
 from bs4 import BeautifulSoup
 from httplib2 import Http
 
+# -*- coding: utf-8 -*-
+
 PORT = 443
 HOST = "telbotrls.herokuapp.com"
 TOKEN = "194721710:AAFQcKrb9w7sDxqGlEtb66L_2C8DQw7KcP4"
@@ -28,7 +30,7 @@ def parse_resp(resp, content, msg):
     if resp.status == 200:
         the_page = content.decode("cp1251", "ignore")
         print(the_page)
-        
+
         soup = BeautifulSoup(the_page, 'html.parser')
         dv = False
         answer = "*" + msg["text"][3:] + "*" + "\n"
