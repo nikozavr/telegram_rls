@@ -25,7 +25,7 @@ except ImportError:
 def parse_resp(resp, content, msg):
     global gettingnum
     if resp.status == 200:
-        the_page = unicode(content, 'cp1251')
+        the_page = content.decode("utf-8", "ignore")
         print(the_page)
         soup = BeautifulSoup(the_page, 'html.parser')
         dv = False
