@@ -4,6 +4,7 @@ from pprint import pprint
 import sys
 import time
 import requests
+from bs4 import BeautifulSoup
 from urllib.parse import urlencode
 from httplib2 import Http
 
