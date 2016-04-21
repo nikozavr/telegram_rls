@@ -58,7 +58,7 @@ def parse_resp(resp, content, msg):
             global gettingnum
             if gettingnum:
                 global link_name
-                answer = "*" + msg["text"][3:] + "*" + "\n"
+                answer = "*" + link_name + "*" + "\n"
                 gettingnum = False
                 link_name = ""
 
