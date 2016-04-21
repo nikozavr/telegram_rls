@@ -16,6 +16,8 @@ app = Flask(__name__)
 num = 0
 gettingnum = False
 links = []
+links_name = []
+link_name = ""
 
 try:
     from Queue import Queue
@@ -23,7 +25,6 @@ except ImportError:
     from queue import Queue
 
 def parse_resp(resp, content, msg):
-    global gettingnum
     if resp.status == 200:
         the_page = content.decode("cp1251", "ignore")
         print(the_page)
@@ -37,20 +38,29 @@ def parse_resp(resp, content, msg):
                 answer = answer + " Варианты:\n"
                 count = 0
                 global links
+                global gettingnum
                 links = []
+                links_name = []
+                gettingnum = True
                 for div in soup.find_all("div", { "class" : "search_serp_one" }):
                     count = count + 1
                     links.append(div.find_all('a')[0]['href'])
-                    print(links)
+                    links_name.append(div.find_all('a')[0]).getText())
                     answer = answer + "  " + str(count) + " " + (div.find_all('a')[0]).getText() + "\n"
                     if div.next_sibling.name == "p":
                         break
-                gettingnum = True
             else:
                 bot.sendMessage(msg['chat']['id'], 'Ошибка поиска. Проверьте название препарата')
                 return
 
         else:
+            global gettingnum
+            if gettingnum:
+                global link_name
+                answer = "*" + msg["text"][3:] + "*" + "\n"
+                gettingnum = False
+                link_name = ""
+
             for item in soup.find_all('a'):
                 if item.has_attr('href'):
                     if item['href'] == "#d-izobrazheniya":
@@ -98,10 +108,12 @@ def handle(msg):
     else:
         try:
             global links
+            global link_name
+            global links_name
             num = int(msg['text'])
-            gettingnum = False
             if num > 0:
                 url = links[num]
+                link_name = links_name[num]
                 h = Http()
                 resp, content = h.request(url)
                 parse_resp(resp, content, msg)
