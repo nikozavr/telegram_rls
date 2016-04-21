@@ -28,6 +28,7 @@ def parse_resp(resp, content, msg):
     if resp.status == 200:
         the_page = content.decode("cp1251", "ignore")
         print(the_page)
+        
         soup = BeautifulSoup(the_page, 'html.parser')
         dv = False
         answer = "*" + msg["text"][3:] + "*" + "\n"
