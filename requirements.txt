@@ -7,6 +7,7 @@ httplib2==0.9.2
 itsdangerous==0.24
 Jinja2==2.8
 MarkupSafe==0.23
+pycurl==7.43.0
 requests==2.9.1
 telepot==7.0
 Werkzeug==0.11.8

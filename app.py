@@ -6,6 +6,8 @@ import time
 import requests
 from bs4 import BeautifulSoup
 from httplib2 import Http
+import pycurl
+from StringIO import StringIO
 
 # -*- coding: utf-8 -*-
 
@@ -102,6 +104,16 @@ def handle(msg):
                 h = Http()
                 resp, content = h.request(url, "GET")
                 print(resp)
+                buffer = StringIO()
+                c = pycurl.Curl()
+                c.setopt(c.URL, 'http://pycurl.io/')
+                c.setopt(c.WRITEDATA, buffer)
+                c.perform()
+                c.close()
+                body = buffer.getvalue()
+                # Body is a string in some encoding.
+                # In Python 2, we can print it without knowing what the encoding is.
+                print(body)
                 parse_resp(resp, content, msg)
             elif msg['text'][:2] == "/h":
                 bot.sendMessage(msg['chat']['id'], 'Бот предназначен для поиска лекарств на сайте http://www.rlsnet.ru/')
