@@ -31,6 +31,9 @@ except ImportError:
     from queue import Queue
 
 def parse_resp(resp, content, msg):
+    global links
+    global gettingnum
+    global links_name
     if resp.status == 200:
         the_page = content.decode("cp1251", "ignore")
         print(the_page)
@@ -44,9 +47,7 @@ def parse_resp(resp, content, msg):
                 answer = answer + "Выберите вариант, введя его номер\n"
                 answer = answer + " Варианты:\n"
                 count = 0
-                global links
-                global gettingnum
-                global links_name
+
                 links = []
                 links_name = []
                 gettingnum = True
@@ -62,7 +63,6 @@ def parse_resp(resp, content, msg):
                 return
 
         else:
-            global gettingnum
             if gettingnum:
                 global link_name
                 answer = "*" + link_name + "*" + "\n"
@@ -98,6 +98,9 @@ def parse_resp(resp, content, msg):
 def handle(msg):
     pprint(msg)
     global gettingnum
+    global links
+    global link_name
+    global links_name
     if not gettingnum:
         if len(msg['text']) > 2:
             if msg['text'][:2] == "/s":
@@ -108,7 +111,7 @@ def handle(msg):
                 print(resp)
                 buffer = StringIO()
                 c = pycurl.Curl()
-                c.setopt(c.URL, 'http://pycurl.io/')
+                c.setopt(c.URL, url)
                 c.setopt(c.WRITEDATA, buffer)
                 c.perform()
                 c.close()
@@ -125,9 +128,6 @@ def handle(msg):
             bot.sendMessage(msg['chat']['id'], 'Для поиска введите /s и точное название препарата')
     else:
         try:
-            global links
-            global link_name
-            global links_name
             num = int(msg['text'])
             if num > 0:
                 url = links[num]
