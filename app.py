@@ -83,7 +83,7 @@ def handle(msg):
     if not gettingnum:
         if len(msg['text']) > 2:
             if msg['text'][:2] == "/s":
-                url = "http://www.rlsnet.ru/search.htm?encoding=utf-8&word=" + msg["text"][3:]
+                url = "http://www.rlsnet.ru/search.htm?encoding=utf-8&word=" + str(msg["text"][3:], 'utf-8')
                 print(url)
                 h = Http()
                 resp, content = h.request(url)
