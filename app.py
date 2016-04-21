@@ -87,11 +87,9 @@ def handle(msg):
                 values = {'word' : msg["text"][3:],
                             'encoding' : "utf-8"}
                 url = "http://www.rlsnet.ru/search.htm?encoding=utf-8&word=" + msg["text"][3:]
-                data = urlencode(values)
 
                 h = Http()
                 resp, content = h.request(url)
-                print(resp.status)
                 parse_resp(resp, content, msg)
 
             elif msg['text'][:2] == "/h":
@@ -107,9 +105,8 @@ def handle(msg):
             gettingnum = False
             if num > 0:
                 url = links[num]
-                req = urllib.request.Request(url)
-                response = urllib.request.urlopen(req)
-                parse_resp(response, msg)
+                resp, content = h.request(url)
+                parse_resp(resp, content, msg)
                 links=[]
             else:
                 bot.sendMessage(msg['chat']['id'], 'Ошибка ввода')
