@@ -1,11 +1,10 @@
-from flask import Flask, request
+from flask import Flask
 import telepot
 from pprint import pprint
 import sys
 import time
 import requests
 from bs4 import BeautifulSoup
-from urllib.parse import urlencode
 from httplib2 import Http
 
 PORT = 443
@@ -84,8 +83,6 @@ def handle(msg):
     if not gettingnum:
         if len(msg['text']) > 2:
             if msg['text'][:2] == "/s":
-                values = {'word' : msg["text"][3:],
-                            'encoding' : "utf-8"}
                 url = "http://www.rlsnet.ru/search.htm?encoding=utf-8&word=" + msg["text"][3:]
                 print(url)
                 h = Http()
