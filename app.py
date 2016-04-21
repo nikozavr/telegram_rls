@@ -116,9 +116,10 @@ def handle(msg):
                 url = links[num]
                 link_name = links_name[num]
                 h = Http()
-                resp, content = h.request(url)
+                resp, content = h.request(url, "GET")
                 parse_resp(resp, content, msg)
                 links=[]
+                links_name = []
             else:
                 bot.sendMessage(msg['chat']['id'], 'Ошибка ввода')
         except ValueError:
