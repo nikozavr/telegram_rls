@@ -39,6 +39,7 @@ def parse_resp(resp, content, msg):
                 count = 0
                 global links
                 global gettingnum
+                global links_name
                 links = []
                 links_name = []
                 gettingnum = True
