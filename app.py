@@ -10,7 +10,7 @@ from httplib2 import Http
 # -*- coding: utf-8 -*-
 
 PORT = 443
-HOST = "telbotrls.herokuapp.com"
+HOST = "telegrambothub.com"
 TOKEN = "194721710:AAFQcKrb9w7sDxqGlEtb66L_2C8DQw7KcP4"
 
 app = Flask(__name__)
